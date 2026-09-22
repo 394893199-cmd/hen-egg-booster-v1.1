@@ -1,0 +1,77 @@
+{
+  "name": "chicken-sound-waves",
+  "version": "1.1.0",
+  "description": "鸡语声波 · 根据当地温度、湿度、气候与阳光照射率生成环境声波的桌面应用",
+  "main": "main.js",
+  "license": "MIT",
+  "author": "chicken-sound-waves contributors",
+  "homepage": "https://github.com/",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:mac:zip": "electron-builder --mac zip",
+    "dist:mac:dmg": "electron-builder --mac dmg",
+    "smoke": "electron . --smoke-test"
+  },
+  "devDependencies": {
+    "electron": "^44.4.3",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "io.github.chickensound.waves",
+    "productName": "鸡语声波",
+    "copyright": "MIT License",
+    "files": [
+      "main.js",
+      "index.html",
+      "css/**/*",
+      "js/**/*",
+      "LICENSE"
+    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.icns",
+      "artifactName": "ChickenSoundWaves-${version}-mac-${arch}.${ext}",
+      "identity": null
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "鸡语声波",
+      "installerLanguages": [
+        "zh_CN",
+        "en_US"
+      ],
+      "artifactName": "ChickenSoundWaves-Setup-${version}.${ext}",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
